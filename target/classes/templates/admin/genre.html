@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}" >
+<div layout:fragment="mainContainer">
+    <div class="container">
+        <div class="row mx-auto">
+            <form method="post" th:action="@{'/admin/addgenreform'}">
+
+                <div class="mt-5 mb-5">
+                    <input type="text" name="name" placeholder="Genre" required="" class="form-control">
+                </div>
+
+                <div class="mt-5 mb-5">
+                    <input type="text" name="code_name" placeholder="Short Code"  required="" class="form-control">
+                </div>
+                <button class="btn btn-success mt-1 mb-5">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

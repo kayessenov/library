@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}" >
+<div layout:fragment="mainContainer">
+    <div class="container">
+
+
+        <div class="container" th:each="dp : ${book}">
+
+            <form method="post" th:action="${'/admin/savebook'}" enctype="multipart/form-data">
+                <div class="featurette mt-5 mb-5 mx-auto">
+                    <div class="col-md-6 mx-auto order-md-1">
+                        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" th:src="@{${dp.image!=null?'/bookimg/'+dp.image+'.jpg':'/bookimg/default.png'}}"></img>
+                        <div class="custom-file mt-2">
+                            <input type="file" name="book_img" class="custom-file-input" id="inputGroupFile01" th:value="${dp.image}" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <input type="hidden" th:value="${dp.id}" name = "id" class="mt-2 mb-2">
+                    <div class="col-md-7 order-md-2 mt-5 mb-5 mx-auto">
+                        <input class="featurette-heading form-control mt-2 mb-2" name="name" id="name" type="text" th:value="${dp.getName()}"></input>
+                        <input class="text-muted form-control" type="number" name="price" th:value="${dp.price}"></input>
+                        <div class="form-group">
+                            <textarea class="form-control w-100 mt-2 mb-2" name="description" id="comment" cols="30" rows="9" th:text="${dp.description }"></textarea>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="mx-auto col-6">
+                        <button class="btn btn-dark">SAVE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    </div>
+</div>
+
+</html>

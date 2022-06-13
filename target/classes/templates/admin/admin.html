@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}" >
+<div layout:fragment="mainContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://picsum.photos/200" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="#{label.adminbooks}"></h5>
+                        <a th:href="@{'/admin/addbook'}" class="btn btn-success" th:text="#{label.adminAddBtn}"></a>
+                        <a th:href="@{'/admin/viewbook'}" class="btn btn-warning" th:text="#{label.adminShowBtn}" ></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://picsum.photos/200" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="#{label.admingenre}"></h5>
+                        <a th:href="@{'/admin/addgenre'}" class="btn btn-success" th:text="#{label.adminAddBtn}"></a>
+                        <a th:href="@{'/admin/viewgenre'}" class="btn btn-warning" th:text="#{label.adminShowBtn}" ></a>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-md-4 mt-3">-->
+<!--                <div class="card" style="width: 18rem;">-->
+<!--                    <img src="https://picsum.photos/200" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title" th:text="#{label.adminusers}"></h5>-->
+
+
+
+<!--                        <a href="#" class="btn btn-success" th:text="#{label.adminAddBtn}"></a>-->
+<!--                        <a href="#" class="btn btn-warning" th:text="#{label.adminShowBtn}" ></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+        </div>
+    </div>
+</div>
+
+</html>
