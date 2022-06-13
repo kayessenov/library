@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/main}" >
+<div layout:fragment="mainContainer">
+    <div class="container">
+        <table class="table mt-3">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col" th:text="#{label.name}"></th>
+                <th scope="col" th:text="#{label.price}"></th>
+                <th scope="col" th:text="#{label.genre}"></th>
+                <th scope="col" th:text="#{label.details}"></th>
+                <th scope="col" th:text="#{label.delete}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="g : ${bookslist}">
+                <th scope="row" th:text="${g.id}"></th>
+                <td th:text="${g.name}"></td>
+                <td th:text="${g.price}"></td>
+                <td th:text="${g.genre.name}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{'/admin/viewbook/editbook/'+${g.id}}" th:text="#{button.viewdetails}" ></a>
+                </td>
+                <td>
+                    <form method="post" th:action="@{'/admin/deletebook'}">
+                        <input type="hidden" th:value="${g.id}" name = "id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</html>

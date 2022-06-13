@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Library</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" th:href="@{'/bootstrap/css/bootstrap.min.css'}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{'/'}" th:text="#{label.library}"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{'/'}" th:text="#{label.books}"></a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link active" aria-current="page" th:href="@{'/bookin'}" th:text="#{label.booking}"></a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MODERATOR')">
+                    <a class="nav-link" th:href="@{'/admin'}" th:text="#{label.admin}"></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{label.lang}">
+
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a th:href="@{'?lang=ru'}" class="nav-link px-2 link-dark" th:text="#{label.ru}"></a></li>
+                        <li><a th:href="@{'?lang=en'}" class="nav-link px-2 link-dark" th:text="#{label.eng}"></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="col-md-3 text-end">
+                <a sec:authorize="isAuthenticated()" class="btn btn-success" th:href="@{'/profile'}" th:text="${currentUser.getEmail()}"></a>
+                <a sec:authorize="isAnonymous()" type="button" class="btn btn-success me-2" th:href="@{'/signin'}">Login</a>
+                <a sec:authorize="isAuthenticated()" type="button" class="btn btn-danger me-2" href="JavaScript:void(0)" onclick="signOut()" th:text="#{button.logout}"></a>
+                <a sec:authorize="isAnonymous()" type="button" class="btn btn-warning" th:href="@{'/signup'}">Sign-up</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div layout:fragment="mainContainer">
+
+
+</div>
+
+</body>
+    <form th:action="@{'/signout'}" method="post" id="signOutFormId">
+
+    </form>
+
+    <script th:src="@{'/bootstrap/js/bootstrap.js'}"></script>
+    <script th:src="@{'/bootstrap/js/bootstrap.esm.js'}"></script>
+    <script th:src="@{'/bootstrap/js/bootstrap.bundle.js'}"></script>
+    <script th:src="@{'/bootstrap/js/jquery-3.6.0.min.js'}"></script>
+    <script type="text/javascript">
+        function signOut(){
+            document.getElementById("signOutFormId").submit();
+        }
+    </script>
+
+</html>
